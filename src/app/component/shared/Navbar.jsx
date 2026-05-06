@@ -2,13 +2,14 @@ import Link from 'next/link';
 import React from 'react';
 import profile from '@/assets/user.png'
 import Image from 'next/image';
+import NavLinks from './NavLinks';
 
 const Navbar = () => {
 
     const links = <>
-    <Link href={'/'}>Home</Link>
-    <Link href={'/about'}>About</Link>
-    <Link href={'/career'}>Career</Link>
+    <NavLinks href={'/'} className="text-red-600">Home</NavLinks>
+    <NavLinks href={'/about'}>About</NavLinks>
+    <NavLinks href={'/career'}>Career</NavLinks>
     </>
     return (
        <div>
