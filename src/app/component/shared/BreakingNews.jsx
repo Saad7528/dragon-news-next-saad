@@ -20,7 +20,7 @@ const BreakingNews = () => {
     return (
         <div className='container mx-auto bg-gray-400 flex items-center py-2 px-3 rounded-lg'>
             <button className='btn bg-red-500 text-white'>Latest News</button>
-            <Marquee>
+            <Marquee pauseOnHover={true}>
                 {
                     news.map(n => <span key={n.id}>{n.id}.{n.title}</span>)
                 }
