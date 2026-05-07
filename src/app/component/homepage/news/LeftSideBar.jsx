@@ -1,12 +1,11 @@
 import React from 'react';
 
-const NewsPage = () => {
+const LeftSideBar = () => {
     return (
         <div>
-            News
             
         </div>
     );
 };
 
-export default NewsPage;
+export default LeftSideBar;
