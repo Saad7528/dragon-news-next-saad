@@ -1,8 +1,7 @@
-import Image from "next/image";
-import LeftSideBar from "../component/homepage/news/LeftSideBar";
-import RightSideBar from "../component/homepage/news/RightSideBar";
-import News from "../component/homepage/news/News";
-
+import LeftSideBar from '@/app/component/homepage/news/LeftSideBar';
+import News from '@/app/component/homepage/news/News';
+import RightSideBar from '@/app/component/homepage/news/RightSideBar';
+import React from 'react';
 
 const getCategories = async () => {
   const res = await fetch('https://openapi.programming-hero.com/api/news/categories');
@@ -16,18 +15,21 @@ const getNewsByCategoryId = async (category_id) => {
   return data.data;
 
 }
-export default async function Home() {
-  const categories = await getCategories();
+  
 
-  const news = await getNewsByCategoryId('02');
-  console.log(news);
-  return (
+const NewCategoryPage = async ({params}) => {
+    const {id} = await params;
+    console.log(id);
 
-    // Left Section
+    const categories = await getCategories();
+
+  const news = await getNewsByCategoryId(id);
+    return (
+         // Left Section
     <div className="container mx-auto grid grid-cols-12 gap-4 my-10">
       <div className="col-span-3">
         <h2 className="text-3xl font-bold  ">All cat</h2>
-        <LeftSideBar categories={categories} activeId={"01"} />
+        <LeftSideBar categories={categories} activeId={id} />
       </div>
 
       {/* News Section   */}
@@ -35,7 +37,7 @@ export default async function Home() {
         <h2 className="text-3xl font-bold bg-pink-500">All News</h2>
       <div>
         {
-          news.map(n => <News key={n._id} n={n}></News>)
+          news.length > 0 ? (news.map(n => <News key={n._id} n={n}></News>)) : (<h2 className='text-center text-3xl font-bold'>No News Found</h2>)
         }
 
       </div>
@@ -46,5 +48,7 @@ export default async function Home() {
         <RightSideBar />
       </div>
     </div>
-  );
-}
+    );
+};
+
+export default NewCategoryPage;
