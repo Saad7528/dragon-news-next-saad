@@ -47,7 +47,7 @@ const News = ({n}) => {
             />
           </figure>
 
-          <p className="text-[#706F6F] text-sm leading-relaxed mb-1">
+          <p className="line-clamp-3 text-[#706F6F] text-sm leading-relaxed mb-1">
             {n.details}
           </p>
           

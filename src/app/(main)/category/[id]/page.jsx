@@ -3,6 +3,12 @@ import News from '@/app/component/homepage/news/News';
 import RightSideBar from '@/app/component/homepage/news/RightSideBar';
 import { getCategories, getNewsByCategoryId } from '@/lib/data';
 import React from 'react';
+
+
+export const metadata = {
+  title: "Dragon News",
+  description: "Best News Portal Ever",
+};
   
 
 const NewCategoryPage = async ({params}) => {
@@ -16,7 +22,7 @@ const NewCategoryPage = async ({params}) => {
          // Left Section
     <div className="container mx-auto grid grid-cols-12 gap-4 my-10">
       <div className="col-span-3">
-        <h2 className="text-3xl font-bold  ">All cat</h2>
+        <h2 className="text-3xl font-bold  ">All Category</h2>
         <LeftSideBar categories={categories} activeId={id} />
       </div>
 
