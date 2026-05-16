@@ -54,7 +54,7 @@ const LoginPage = () => {
                             {...register("password", { required: "Enter your Password" })}
                             className="input"
                             placeholder="Your Password" />
-                        <span className='absolute top-5 right-5' onClick={() => setIsShowPassword(!isShowPassword)}>{isShowPassword ? <FaEye /> : <FaEyeSlash />
+                        <span className='absolute top-5 right-5 cursor-pointer' onClick={() => setIsShowPassword(!isShowPassword)}>{isShowPassword ? <FaEye /> : <FaEyeSlash />
                         }</span>
 
                         {errors.password && <p className='text-red-600'>{errors.password.message}</p>}

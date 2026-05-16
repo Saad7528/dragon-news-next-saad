@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import React from 'react';
-import profile from '@/assets/user.png'
+import profile from '../../../assets/user.png'
 import Image from 'next/image';
 import NavLinks from './NavLinks';
 import { authClient } from '@/lib/lib/auth-client';
@@ -41,7 +41,7 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <div>
+                <div className='navbar-end'>
                     {isPending ? <span className="loading loading-spinner loading-xl"></span>
                         : user ? <div className="navbar-end flex items-center gap-5">
                             <h2 >Hollow {user?.name}</h2>
@@ -51,12 +51,11 @@ const Navbar = () => {
                                 height={60}
                                 width={60}
                             ></Image>
-                            <button className='btn bg-gray-400 font-bold' onClick={async () => await authClient.signOut()}
-                            ><Link href={'/login'}>Log Out</Link></button>
+                            <Link className='btn bg-gray-400 font-bold' onClick={async () => await authClient.signOut()} href={'/login'}>Log Out</Link>
 
                         </div>
                             :
-                            <button className='btn bg-gray-400 font-bold'><Link href={'/login'}>Lon In</Link></button>}
+                            <Link className='bg-gray-400 font-bold btn' href={'/login'}>Lon In</Link>}
                 </div>
 
 
