@@ -1,8 +1,9 @@
 "use client"
 import { authClient } from '@/lib/lib/auth-client';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const LoginPage = () => {
 
@@ -29,6 +30,8 @@ const LoginPage = () => {
 
     }
 
+    const [isShowPassword, setIsShowPassword] = useState(false)
+
     return (
         <div className='container mx-auto bg-slate-200 min-h-[80vh] flex justify-center items-center'>
             <div className='rounded-xl bg-slate-50 p-6 '>
@@ -44,13 +47,16 @@ const LoginPage = () => {
                             placeholder="Your Email" />
                         {errors.email && <p className='text-red-600'>{errors.email.message}</p>}
                     </fieldset>
-                    <fieldset className="fieldset">
+                    <fieldset className="fieldset relative">
                         <legend className="fieldset-legend">Your Password</legend>
                         <input
-                            type="text"
+                            type={isShowPassword ? "text" : "password"}
                             {...register("password", { required: "Enter your Password" })}
                             className="input"
                             placeholder="Your Password" />
+                        <span className='absolute top-5 right-5' onClick={() => setIsShowPassword(!isShowPassword)}>{isShowPassword ? <FaEye /> : <FaEyeSlash />
+                        }</span>
+
                         {errors.password && <p className='text-red-600'>{errors.password.message}</p>}
 
                     </fieldset>
