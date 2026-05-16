@@ -12,7 +12,7 @@ const Navbar = () => {
     const { data: session, isPending } = authClient.useSession();
 
     const user = session?.user;
-    console.log(user);
+    
 
 
     const links = <>
