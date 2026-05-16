@@ -1,4 +1,5 @@
 "use client"
+import { authClient } from '@/lib/lib/auth-client';
 import Link from 'next/link';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -13,10 +14,29 @@ const RegisterPage = () => {
 
     console.log(errors);
 
-    
-    const handleSubmitFunc = (data) => {
+
+    const handleSubmitFunc = async (data) => {
+        const { email, name, photo, password } = data;
         console.log(data);
-       
+
+
+        const { data: res, error } = await authClient.signUp.email({
+            name: name, // required
+            email: email, // required
+            password: password, // required
+            image: photo,
+            callbackURL: "/",
+        });
+        
+        console.log("res", res, "Error", error);
+
+        if(error){
+            alert("User Already Exist Please Try Another Email")
+        }
+        
+        if(res){
+            alert("SineUp Successful")
+        }
     }
 
     return (
@@ -25,14 +45,14 @@ const RegisterPage = () => {
                 <h2 className='text-3xl font-bold'>Register A Account</h2>
 
                 <form onSubmit={handleSubmit(handleSubmitFunc)}>
-                     <fieldset className="fieldset">
+                    <fieldset className="fieldset">
                         <legend className="fieldset-legend">Your Name</legend>
                         <input
                             type="text"
                             {...register("name", { required: "Enter your Name" })}
                             className="input"
                             placeholder="Your Email" />
-                            {errors.name && <p className='text-red-600'>{errors.name.message}</p>}
+                        {errors.name && <p className='text-red-600'>{errors.name.message}</p>}
                     </fieldset>
                     <fieldset className="fieldset">
                         <legend className="fieldset-legend">Your Photo URL</legend>
@@ -41,7 +61,7 @@ const RegisterPage = () => {
                             {...register("photo", { required: "Enter your Photo URL" })}
                             className="input"
                             placeholder="Your Photo URL" />
-                            {errors.photo && <p className='text-red-600'>{errors.photo.message}</p>}
+                        {errors.photo && <p className='text-red-600'>{errors.photo.message}</p>}
 
                     </fieldset>
                     <fieldset className="fieldset">
@@ -51,7 +71,7 @@ const RegisterPage = () => {
                             {...register("email", { required: "Enter your Email" })}
                             className="input"
                             placeholder="Your Email" />
-                            {errors.email && <p className='text-red-600'>{errors.email.message}</p>}
+                        {errors.email && <p className='text-red-600'>{errors.email.message}</p>}
                     </fieldset>
                     <fieldset className="fieldset">
                         <legend className="fieldset-legend">Your Password</legend>
@@ -60,7 +80,7 @@ const RegisterPage = () => {
                             {...register("password", { required: "Enter your Password" })}
                             className="input"
                             placeholder="Your Password" />
-                            {errors.password && <p className='text-red-600'>{errors.password.message}</p>}
+                        {errors.password && <p className='text-red-600'>{errors.password.message}</p>}
 
                     </fieldset>
                     <button className='btn bg-slate-900 text-white font-bold w-full mt-4'>Register</button>
