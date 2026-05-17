@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
 const RegisterPage = () => {
 
@@ -37,11 +38,11 @@ const RegisterPage = () => {
         console.log("res", res, "Error", error);
 
         if (error) {
-            alert("User Already Exist Please Try Another Email")
+            toast.error("User Already Exist Please Try Another Email")
         }
 
         if (res) {
-            alert("SineUp Successful")
+            toast.success("SineUp Successful")
         }
     }
 

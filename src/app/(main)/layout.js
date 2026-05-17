@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../component/shared/Header';
 import Navbar from '../component/shared/Navbar';
 import BreakingNews from '../component/shared/BreakingNews';
+import { ToastContainer } from 'react-toastify';
 
 const MainLayout = ({ children }) => {
     return (
@@ -10,6 +11,8 @@ const MainLayout = ({ children }) => {
             <BreakingNews/>
             <Navbar />
             {children}
+            <ToastContainer />
+
         </div>
     );
 };

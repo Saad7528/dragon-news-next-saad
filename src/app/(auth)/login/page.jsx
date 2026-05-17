@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
 const LoginPage = () => {
 
@@ -27,6 +28,14 @@ const LoginPage = () => {
         });
 
         console.log(res, error);
+
+         if (error) {
+            toast.error("Please Enter Correct Email And Password")
+        }
+
+        if (res) {
+            toast.success("SineIm Successful")
+        }
 
     }
 
